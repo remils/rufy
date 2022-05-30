@@ -1,0 +1,28 @@
+{
+  "name": "remils/rufy",
+  "description": "Custom library for web applications.",
+  "version": "1.0.0",
+  "keywords": [
+    "web",
+    "application",
+    "rufy"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Remils\\Rufy\\": "src/"
+    }
+  },
+  "homepage": "https://github.com/remils/rufy",
+  "authors": [
+    {
+      "name": "Sergey Zatulivetrov",
+      "email": "remils@mail.ru"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.4"
+  }
+}
