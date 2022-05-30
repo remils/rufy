@@ -6,8 +6,8 @@ use Exception;
 
 class ConnectNotFoundException extends Exception
 {
-    public function __construct()
+    public function __construct(string $name)
     {
-        parent::__construct('Connect not found.', 1);
+        parent::__construct(sprintf('Connect %s not found.', $name));
     }
 }

@@ -14,7 +14,7 @@ class DB
             return $this->connects[$name];
         }
 
-        throw new ConnectNotFoundException();
+        throw new ConnectNotFoundException($name);
     }
 
     public function setConnect(string $name, DBConnect $connect): self
