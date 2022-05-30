@@ -6,8 +6,8 @@ use Exception;
 
 class ServiceNotFoundException extends Exception
 {
-    public function __construct()
+    public function __construct(string $name)
     {
-        parent::__construct("Service not found in container.", 1);
+        parent::__construct(sprintf('Service %s not found in container.', $name));
     }
 }

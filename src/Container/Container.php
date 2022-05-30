@@ -21,7 +21,7 @@ class Container implements \Remils\Rufy\Container\Contracts\Container
             return $this->services[$name];
         }
 
-        throw new ServiceNotFoundException();
+        throw new ServiceNotFoundException($name);
     }
 
     public function has(string $name): bool
