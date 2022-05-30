@@ -6,5 +6,5 @@ use Remils\Rufy\Container\Contracts\Container;
 
 interface Middleware
 {
-    public function handle(Container $container, ...$args);
+    public function handle(Container $container);
 }
