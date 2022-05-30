@@ -22,7 +22,9 @@ class Response
     {
         $this->status(500);
 
-        echo sprintf('<pre>%s</pre>', var_dump($data));
+        echo '<pre>';
+        echo var_dump($data);
+        echo '</pre>';
     }
 
     public function json($data, int $status = 200): void
