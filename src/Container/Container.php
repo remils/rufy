@@ -2,6 +2,7 @@
 
 namespace Remils\Rufy\Container;
 
+use ReflectionClass;
 use Remils\Rufy\Container\Contracts\ServiceProvider;
 use Remils\Rufy\Container\Exceptions\ServiceNotFoundException;
 
@@ -31,7 +32,7 @@ class Container implements \Remils\Rufy\Container\Contracts\Container
     protected function registerServices(array $serviceProviders): void
     {
         foreach ($serviceProviders as $serviceProvider) {
-            $this->registerService($serviceProvider);
+            $this->registerService((new ReflectionClass($serviceProvider))->newInstance());
         }
     }
 
