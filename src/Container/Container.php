@@ -12,7 +12,9 @@ class Container implements \Remils\Rufy\Container\Contracts\Container
 
     public function __construct(array $serviceProviders = [])
     {
-        $this->registerServices($serviceProviders);
+        foreach ($serviceProviders as $serviceProvider) {
+            $this->set((new ReflectionClass($serviceProvider))->newInstance());
+        }
     }
 
     public function get(string $name)
@@ -29,15 +31,10 @@ class Container implements \Remils\Rufy\Container\Contracts\Container
         return array_key_exists($name, $this->services);
     }
 
-    protected function registerServices(array $serviceProviders): void
-    {
-        foreach ($serviceProviders as $serviceProvider) {
-            $this->registerService((new ReflectionClass($serviceProvider))->newInstance());
-        }
-    }
-
-    protected function registerService(ServiceProvider $serviceProvider): void
+    public function set(ServiceProvider $serviceProvider): self
     {
         $this->services[$serviceProvider->name()] = $serviceProvider->newInstance($this);
+
+        return $this;
     }
 }

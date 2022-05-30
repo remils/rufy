@@ -23,7 +23,7 @@ class App
         \Remils\Rufy\Services\Router\RouterServiceProvider::class,
     ];
 
-    public function __construct(...$serviceProviders)
+    public function __construct(array $serviceProviders = [])
     {
         $this->container = new Container(array_merge($this->serviceProviders, $serviceProviders));
     }
