@@ -9,7 +9,7 @@ class Middleware
 {
     protected $middlewares = [];
 
-    public function get(string $name)
+    public function get(string $name): MiddlewareContract
     {
         if (array_key_exists($name, $this->middlewares)) {
             return $this->middlewares[$name];
