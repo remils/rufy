@@ -2,6 +2,7 @@
 
 namespace Remils\Rufy\Services\Router;
 
+use Remils\Rufy\Container\Contracts\Container;
 use Remils\Rufy\Services\Middleware\Middleware;
 use Remils\Rufy\Services\Request\Request;
 use Remils\Rufy\Services\Router\Exceptions\RouteNotFoundException;
@@ -29,7 +30,7 @@ class Router
         return $route;
     }
 
-    public function dispatch(): RouteDispatch
+    public function handle(Container $container)
     {
         foreach ($this->routes as $route) {
             $parser = new RouteParser($this->request, $route);
@@ -38,14 +39,14 @@ class Router
 
             if ($routeParse) {
                 foreach ($routeParse->route()->middlewares() as $name) {
-                    $this->middleware->get($name)->handle($this->request, ...$routeParse->args());
+                    $this->middleware->get($name)->handle($container, ...$routeParse->args());
                 }
 
-                return new RouteDispatch(
+                return (new RouteDispatch(
                     $routeParse->route()->controller(),
                     $routeParse->route()->action(),
                     $routeParse->args()
-                );
+                ))->handle($container);
             }
         }
 

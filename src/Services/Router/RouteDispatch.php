@@ -3,6 +3,7 @@
 namespace Remils\Rufy\Services\Router;
 
 use ReflectionClass;
+use Remils\Rufy\Container\Contracts\Container;
 
 class RouteDispatch
 {
@@ -19,11 +20,11 @@ class RouteDispatch
         $this->args       = $args;
     }
 
-    public function handle()
+    public function handle(Container $container)
     {
         $reflection = new ReflectionClass($this->controller);
 
-        $controller = $reflection->newInstance();
+        $controller = $reflection->newInstance($container);
 
         return call_user_func([$controller, $this->action], ...$this->args);
     }

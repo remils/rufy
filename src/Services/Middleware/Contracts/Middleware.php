@@ -2,9 +2,9 @@
 
 namespace Remils\Rufy\Services\Middleware\Contracts;
 
-use Remils\Rufy\Services\Request\Request;
+use Remils\Rufy\Container\Contracts\Container;
 
 interface Middleware
 {
-    public function handle(Request $request, ...$args);
+    public function handle(Container $container, ...$args);
 }
