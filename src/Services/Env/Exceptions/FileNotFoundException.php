@@ -6,8 +6,8 @@ use Exception;
 
 class FileNotFoundException extends Exception
 {
-    public function __construct()
+    public function __construct(string $path)
     {
-        parent::__construct('File not found.', 1);
+        parent::__construct(sprintf('File %s not found.', $path));
     }
 }

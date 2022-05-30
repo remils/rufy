@@ -25,7 +25,7 @@ class Env
     public function load(string $path)
     {
         if (!file_exists($path)) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException($path);
         }
 
         $stream = fopen($path, 'r');
