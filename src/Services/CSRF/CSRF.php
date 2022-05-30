@@ -25,14 +25,14 @@ class CSRF
         return $this->tokenName;
     }
 
-    public function token(): string
+    public function token()
     {
         return $this->sessionService->get($this->tokenName());
     }
 
     public function verify(): bool
     {
-        $verifedToken = $this->token() === $this->requestService->input($this->tokenName());
+        $verifedToken = $this->token() && $this->token() === $this->requestService->input($this->tokenName());
 
         $this->sessionService->unset($this->tokenName());
 

@@ -40,6 +40,8 @@ class App
 
     public function handle()
     {
+        $this->middleware()->set('csrf', \Remils\Rufy\Middlewares\CSRFMiddleware::class);
+
         return $this->router()->handle($this->container);
     }
 }

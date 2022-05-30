@@ -18,22 +18,26 @@ class Response
         return $this;
     }
 
+    public function text($data): self
+    {
+        echo $data;
+
+        return $this;
+    }
+
     public function dump($data): void
     {
         $this->status(500);
-
-        echo '<pre>';
-        echo var_dump($data);
-        echo '</pre>';
+        $this->text('<pre>');
+        $this->text(var_dump($data));
+        $this->text('</pre>');
     }
 
     public function json($data, int $status = 200): void
     {
         $this->status($status);
-
         $this->contentType('application/json; charset=utf-8');
-
-        echo json_encode($data);
+        $this->text(json_encode($data));
     }
 
     public function noContent(): void
