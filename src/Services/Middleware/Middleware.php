@@ -2,6 +2,7 @@
 
 namespace Remils\Rufy\Services\Middleware;
 
+use ReflectionClass;
 use Remils\Rufy\Services\Middleware\Contracts\Middleware as MiddlewareContract;
 use Remils\Rufy\Services\Middleware\Exceptions\MiddlewareNotFoundException;
 
@@ -18,9 +19,9 @@ class Middleware
         throw new MiddlewareNotFoundException($name);
     }
 
-    public function set(string $name, MiddlewareContract $middleware): self
+    public function set(string $name, string $middleware): self
     {
-        $this->middlewares[$name] = $middleware;
+        $this->middlewares[$name] = (new ReflectionClass($middleware))->newInstance();
 
         return $this;
     }
