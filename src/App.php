@@ -3,8 +3,6 @@
 namespace Remils\Rufy;
 
 use Remils\Rufy\Container\Container;
-use Remils\Rufy\Services\Middleware\Middleware;
-use Remils\Rufy\Services\Router\Router;
 
 class App
 {
@@ -28,20 +26,15 @@ class App
         $this->container = new Container(array_merge($this->serviceProviders, $serviceProviders));
     }
 
-    public function middleware(): Middleware
+    public function get(string $name)
     {
-        return $this->container->get('middleware');
-    }
-
-    public function router(): Router
-    {
-        return $this->container->get('router');
+        return $this->container->get($name);
     }
 
     public function handle()
     {
-        $this->middleware()->set('csrf', \Remils\Rufy\Middlewares\CSRFMiddleware::class);
+        $this->get('middleware')->set('csrf', \Remils\Rufy\Middlewares\CSRFMiddleware::class);
 
-        return $this->router()->handle($this->container);
+        return $this->get('router')->handle($this->container);
     }
 }
