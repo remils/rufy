@@ -1,0 +1,19 @@
+{
+    "name": "remils/rufy",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Remils\\Rufy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sergey Zatulivetrov",
+            "email": "remils@mail.ru"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    }
+}
