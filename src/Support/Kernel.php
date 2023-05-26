@@ -84,8 +84,6 @@ abstract class Kernel
         } catch (Throwable $exception) {
             $event = new ExceptionEvent($exception);
 
-            throw $exception;
-
             $bus->dispatch($event);
         }
     }
